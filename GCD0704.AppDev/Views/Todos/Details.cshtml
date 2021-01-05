@@ -1,0 +1,18 @@
+﻿@model GCD0704.AppDev.Models.Todo
+@{
+	ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">@Model.Name</h3>
+	</div>
+	<div class="panel-body">
+		@Model.Description
+	</div>
+		<div class="panel-body">
+		@Model.DueDate
+	</div>
+</div>
