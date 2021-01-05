@@ -1,0 +1,28 @@
+﻿@model GCD0704.AppDev.Models.Todo
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index Todo</h2>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Task Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Due Date</th>
+      <th scope="col">Action</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">@Model.Id</th>
+      <td>@Model.Name</td>
+      <td>@Model.Description</td>
+      <td>@Model.DueDate.ToString()</td>
+    </tr>
+  </tbody>
+</table>
