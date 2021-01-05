@@ -1,32 +1,38 @@
 ﻿@model IEnumerable<GCD0704.AppDev.Models.Todo>
 @{
-    ViewBag.Title = "Index";
+	ViewBag.Title = "Index";
 }
 
 <h2>Index Todo</h2>
 
 
 <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Task Name</th>
-      <th scope="col">Description</th>
-      <th scope="col">Due Date</th>
-      <th scope="col">Action</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-    @foreach (var item in Model)
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Task Name</th>
+			<th scope="col">Description</th>
+			<th scope="col">Due Date</th>
+			<th scope="col">Action</th>
+
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
 		{
-    <tr>
-      <th scope="row">@item.Id</th>
-      <td>@item.Name</td>
-      <td>@item.Description</td>
-      <td>@item.DueDate.ToString()</td>
-      <td><a href="" class="btn btn-default">Edit</a> <a href="" class="btn btn-danger">Delete</a> <a href=" " class="btn btn-primary">Details</a></td>
-    </tr>
+			<tr>
+				<th scope="row">@item.Id</th>
+				<td>@item.Name</td>
+				<td>@item.Description</td>
+				<td>@item.DueDate.ToString()</td>
+				<td>
+					<a href="" class="btn btn-default">Edit</a>
+					<a href="" class="btn btn-danger">Delete</a>
+					@Html.ActionLink("Details", "Details", "Todos",
+								 new { id = item.Id },
+								 new { @class = "btn btn-primary" })
+				</td>
+			</tr>
 		}
-  </tbody>
+	</tbody>
 </table>
