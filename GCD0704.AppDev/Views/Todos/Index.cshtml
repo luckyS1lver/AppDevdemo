@@ -5,6 +5,7 @@
 
 <h2>Index Todo</h2>
 
+<a href="" class="btn btn-primary">Create new Task</a>
 
 <table class="table">
 	<thead>
@@ -27,7 +28,9 @@
 				<td>@item.DueDate.ToString()</td>
 				<td>
 					<a href="" class="btn btn-default">Edit</a>
-					<a href="" class="btn btn-danger">Delete</a>
+					@Html.ActionLink("Delete this task","Delete", "Todos",
+								 new { id = item.Id},
+								 new { @class = "btn btn-danger"})
 					@Html.ActionLink("Details", "Details", "Todos",
 								 new { id = item.Id },
 								 new { @class = "btn btn-primary" })
