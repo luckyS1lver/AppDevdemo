@@ -1,0 +1,23 @@
+﻿@model GCD0704.AppDev.Models.Todo
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit the task</h2>
+
+@using (@Html.BeginForm("Edit", "Todos","POST"))
+{
+  <div class="form-group">
+    @Html.HiddenFor(model => model.Id);
+    @Html.LabelFor(model => model.Name)
+    @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+    @Html.LabelFor(model => model.Description)
+    @Html.TextAreaFor(model => model.Description, new { @class = "form-control"})
+    @Html.LabelFor(model => model.DueDate)
+    @Html.TextBoxFor(model => model.DueDate,
+           new {@class = "form-control", @type = "date"})
+    <button type="submit"class="btn btn-primary">Update Task</button>
+
+  </div>
+}
+
