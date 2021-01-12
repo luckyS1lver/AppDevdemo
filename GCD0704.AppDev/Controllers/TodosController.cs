@@ -38,5 +38,26 @@ namespace GCD0704.AppDev.Controllers
 
 			return RedirectToAction("Index");
 		}
+
+		[HttpGet]
+		public ActionResult Create()
+		{
+			return View();
+
+		}
+
+		[HttpPost]
+		public ActionResult Create(Todo todo)
+		{
+			var todoCreated = new Todo();
+			todoCreated.Name = todo.Name;
+			todoCreated.Description = todo.Description;
+			todoCreated.DueDate = todo.DueDate;
+
+			_context.Todos.Add(todoCreated);
+			_context.SaveChanges();
+
+			return RedirectToAction("Index");
+		}
 	}
 }
