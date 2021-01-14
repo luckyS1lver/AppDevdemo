@@ -1,4 +1,5 @@
 ﻿using GCD0704.AppDev.Models;
+using GCD0704.AppDev.ViewModels;
 using System;
 using System.Data.Entity;
 using System.Linq;
@@ -54,7 +55,11 @@ namespace GCD0704.AppDev.Controllers
 		[HttpGet]
 		public ActionResult Create()
 		{
-			return View();
+			var viewModel = new TodoCategoriesViewModel()
+			{
+				Categories = _context.Categories.ToList()
+			};
+			return View(viewModel);
 
 		}
 
@@ -69,6 +74,7 @@ namespace GCD0704.AppDev.Controllers
 			todoCreated.Name = todo.Name;
 			todoCreated.Description = todo.Description;
 			todoCreated.DueDate = todo.DueDate;
+			todoCreated.CategoryId = todo.CategoryId;
 
 			_context.Todos.Add(todoCreated);
 			_context.SaveChanges();
