@@ -88,7 +88,13 @@ namespace GCD0704.AppDev.Controllers
 			var todoInDb = _context.Todos.SingleOrDefault(t => t.Id == id);
 			if (todoInDb == null) return HttpNotFound();
 
-			return View(todoInDb);
+			var viewModel = new TodoCategoriesViewModel()
+			{
+				Todo = todoInDb,
+				Categories = _context.Categories.ToList()
+			};
+
+			return View(viewModel);
 		}
 
 		[HttpPost]
