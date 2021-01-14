@@ -13,6 +13,9 @@ namespace GCD0704.AppDev.Models
 		public string Description { get; set; }
 		[Required(ErrorMessage = "Due Date must not be empty")]
 		public DateTime DueDate { get; set; }
+		[Required(ErrorMessage = ("Category must not be null"))]
+		public int CategoryId { get; set; }
+		public Category Category { get; set; }
 
 	}
 }

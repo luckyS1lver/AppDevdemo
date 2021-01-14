@@ -1,5 +1,6 @@
 ﻿using GCD0704.AppDev.Models;
 using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -16,18 +17,23 @@ namespace GCD0704.AppDev.Controllers
 
 		public ActionResult Index(string searchString)
 		{
-			var todos = _context.Todos.ToList();
+			var todos = _context.Todos.Include(m => m.Category).ToList();
 
 			if (!String.IsNullOrWhiteSpace(searchString))
 			{
-				todos = _context.Todos.Where(t => t.Name.Contains(searchString)).ToList();
+				todos = _context.Todos
+					.Include(m => m.Category)
+					.Where(t => t.Name.Contains(searchString))
+					.ToList();
 			}
 			return View(todos);
 		}
 
 		public ActionResult Details(int id)
 		{
-			var todo = _context.Todos.SingleOrDefault(t => t.Id == id);
+			var todo = _context.Todos
+				.Include(m => m.Category)
+				.SingleOrDefault(t => t.Id == id);
 			return View(todo);
 		}
 
