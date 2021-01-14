@@ -102,7 +102,12 @@ namespace GCD0704.AppDev.Controllers
 		{
 			if (!ModelState.IsValid)
 			{
-				return View(todo);
+				var viewModel = new TodoCategoriesViewModel()
+				{
+					Todo = todo,
+					Categories = _context.Categories.ToList()
+				};
+				return View(viewModel);
 			}
 			var todoInDb = _context.Todos.SingleOrDefault(t => t.Id == todo.Id);
 
