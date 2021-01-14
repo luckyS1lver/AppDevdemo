@@ -55,6 +55,10 @@ namespace GCD0704.AppDev.Controllers
 		[HttpPost]
 		public ActionResult Create(Todo todo)
 		{
+			if (!ModelState.IsValid)
+			{
+				return View();
+			}
 			var todoCreated = new Todo();
 			todoCreated.Name = todo.Name;
 			todoCreated.Description = todo.Description;
@@ -78,6 +82,10 @@ namespace GCD0704.AppDev.Controllers
 		[HttpPost]
 		public ActionResult Edit(Todo todo)
 		{
+			if (!ModelState.IsValid)
+			{
+				return View(todo);
+			}
 			var todoInDb = _context.Todos.SingleOrDefault(t => t.Id == todo.Id);
 
 			todoInDb.Name = todo.Name;
