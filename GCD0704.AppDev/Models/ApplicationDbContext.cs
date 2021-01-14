@@ -10,6 +10,7 @@ namespace GCD0704.AppDev.Models
 		{
 		}
 		public DbSet<Todo> Todos { get; set; }
+		public DbSet<Category> Categories { get; set; }
 
 		public static ApplicationDbContext Create()
 		{
