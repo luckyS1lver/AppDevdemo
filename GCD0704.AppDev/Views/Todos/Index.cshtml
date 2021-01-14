@@ -5,7 +5,16 @@
 
 <h2>Index Todo</h2>
 
-@Html.ActionLink("Create new Task", "Create","Todos", null,new { @class = "btn btn-primary"})
+@using (Html.BeginForm("Index", "Todos", "POST"))
+{
+	<div class="form-group">
+		@Html.Label("Search task by Name")
+		@Html.TextBox("searchString", null, new { @class = "form-control" })
+		<button type="submit" class="btn btn-primary">Search by Name</button>
+	</div>
+}
+
+@Html.ActionLink("Create new Task", "Create", "Todos", null, new { @class = "btn btn-primary" })
 
 <table class="table">
 	<thead>
@@ -28,11 +37,11 @@
 				<td>@item.DueDate.ToString()</td>
 				<td>
 					@Html.ActionLink("Edit the Task", "Edit", "Todos",
-								 new { id = item.Id},
-								 new { @class = "btn btn-default"})
-					@Html.ActionLink("Delete this task","Delete", "Todos",
-								 new { id = item.Id},
-								 new { @class = "btn btn-danger"})
+								 new { id = item.Id },
+								 new { @class = "btn btn-default" })
+					@Html.ActionLink("Delete this task", "Delete", "Todos",
+								 new { id = item.Id },
+								 new { @class = "btn btn-danger" })
 					@Html.ActionLink("Details", "Details", "Todos",
 								 new { id = item.Id },
 								 new { @class = "btn btn-primary" })

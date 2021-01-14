@@ -8,7 +8,7 @@
 @using (@Html.BeginForm("Edit", "Todos","POST"))
 {
   <div class="form-group">
-    @Html.HiddenFor(model => model.Id);
+    @Html.HiddenFor(model => model.Id)
     @Html.LabelFor(model => model.Name)
     @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
     @Html.LabelFor(model => model.Description)

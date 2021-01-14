@@ -1,4 +1,5 @@
 ﻿using GCD0704.AppDev.Models;
+using System;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -13,9 +14,14 @@ namespace GCD0704.AppDev.Controllers
 		}
 		// GET: Todos
 
-		public ActionResult Index()
+		public ActionResult Index(string searchString)
 		{
 			var todos = _context.Todos.ToList();
+
+			if (!String.IsNullOrWhiteSpace(searchString))
+			{
+				todos = _context.Todos.Where(t => t.Name.Contains(searchString)).ToList();
+			}
 			return View(todos);
 		}
 
