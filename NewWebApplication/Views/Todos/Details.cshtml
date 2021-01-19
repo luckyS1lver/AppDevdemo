@@ -1,0 +1,20 @@
+﻿@model NewWebApplication.Models.Todo
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+@Html.ActionLink("Back to Index", "Index", "Todos", null, new { @class = "btn btn-primary" })
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">@Model.Name</h3>
+    </div>
+    <div class="panel-body">
+        @Model.Description
+    </div>
+    <div class="panel-body">
+        @Model.DueDate
+    </div>
+</div>
