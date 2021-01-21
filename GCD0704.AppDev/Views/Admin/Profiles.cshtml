@@ -1,0 +1,27 @@
+﻿@model IEnumerable<GCD0704.AppDev.Models.ApplicationUser>
+@{
+    ViewBag.Title = "Profiles";
+}
+
+<h2>Profiles</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">User ID</th>
+            <th scope="col">User Name</th>
+            <th scope="col">User Roles</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <th scope="row">@user.Id</th>
+                <td>@user.UserName</td>
+                <td>@user.Roles</td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
