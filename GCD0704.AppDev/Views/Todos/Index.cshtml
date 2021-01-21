@@ -1,54 +1,65 @@
 ﻿@model IEnumerable<GCD0704.AppDev.Models.Todo>
 @{
-	ViewBag.Title = "Index";
+    ViewBag.Title = "Index";
 }
 
 <h2>Index Todo</h2>
 
 @using (Html.BeginForm("Index", "Todos", "POST"))
 {
-	<div class="form-group">
-		@Html.Label("Search task by Name")
-		@Html.TextBox("searchString", null, new { @class = "form-control" })
-		<button type="submit" class="btn btn-primary">Search by Name</button>
-	</div>
+    <div class="form-group">
+        @Html.Label("Search task by Name")
+        @Html.TextBox("searchString", null, new { @class = "form-control" })
+        <button type="submit" class="btn btn-primary">Search by Name</button>
+    </div>
+}
+@if (User.IsInRole("user"))
+{
+    @Html.ActionLink("Create new Task", "Create", "Todos", null, new { @class = "btn btn-primary" })
 }
 
-@Html.ActionLink("Create new Task", "Create", "Todos", null, new { @class = "btn btn-primary" })
 
 <table class="table">
-	<thead>
-		<tr>
-			<th scope="col">#</th>
-			<th scope="col">Task Name</th>
-			<th scope="col">Description</th>
-			<th scope="col">Due Date</th>
-			<th scope="col">Category</th>
-			<th scope="col">Action</th>
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Task Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Due Date</th>
+            <th scope="col">Category</th>
+            @if (User.IsInRole("action"))
+            {
+                <th scope="col">Action</th>
+            }
 
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var item in Model)
-		{
-			<tr>
-				<th scope="row">@item.Id</th>
-				<td>@item.Name</td>
-				<td>@item.Description</td>
-				<td>@item.DueDate.ToString()</td>
-				<td>@item.Category.Name</td>
-				<td>
-					@Html.ActionLink("Edit the Task", "Edit", "Todos",
-								 new { id = item.Id },
-								 new { @class = "btn btn-default" })
-					@Html.ActionLink("Delete this task", "Delete", "Todos",
-								 new { id = item.Id },
-								 new { @class = "btn btn-danger" })
-					@Html.ActionLink("Details", "Details", "Todos",
-								 new { id = item.Id },
-								 new { @class = "btn btn-primary" })
-				</td>
-			</tr>
-		}
-	</tbody>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@item.Id</th>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td>@item.DueDate.ToString()</td>
+                <td>@item.Category.Name</td>
+                @if (User.IsInRole("user"))
+                {
+                    <td>
+                        @Html.ActionLink("Edit the Task", "Edit", "Todos",
+                                     new { id = item.Id },
+                                     new { @class = "btn btn-default" })
+                        @Html.ActionLink("Delete this task", "Delete", "Todos",
+                                     new { id = item.Id },
+                                     new { @class = "btn btn-danger" })
+                        @Html.ActionLink("Details", "Details", "Todos",
+                                     new { id = item.Id },
+                                     new { @class = "btn btn-primary" })
+                    </td>
+                }
+                
+            </tr>
+        }
+    </tbody>
 </table>
